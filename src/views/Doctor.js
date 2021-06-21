@@ -10,8 +10,6 @@ import Typography from "@material-ui/core/Typography";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 
-// import docDB from "./doc-data"
-
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
@@ -77,11 +75,14 @@ const Doctor = () => {
     <div>
       <h1>All Doctors</h1>
       <div>
-        <Button>
-          <Fab className={classes.addicon} color="primary" aria-label="add">
-            <AddIcon />
-          </Fab>
-        </Button>
+        <Fab
+          className={classes.addicon}
+          color="primary"
+          aria-label="add"
+          onClick={this.handleToggle}
+        >
+          <AddIcon />
+        </Fab>
       </div>
       <Grid container spacing={4} className={classes.gridContainer}>
         <Grid item xs={12} sm={6} md={4}>

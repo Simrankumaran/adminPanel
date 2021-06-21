@@ -3,13 +3,24 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
-// import Card from '@material-ui/core/Card';
 
-import { TotalPatients, TotalPractioners } from "../components/TotalPatients";
+import {
+  TotalPatients,
+  TotalPractioners,
+  Visits,
+  Earning,
+} from "../components/Num1";
+// import Map from "../components/Map";
+import PatList from "../components/PatList";
+import { Chart1, Chart2 } from "../components/Charts";
 
 const useStyles = makeStyles({
   root: {
-    minWidth: 275,
+    minWidth: 100,
+  },
+  patlist: {
+    minWidth: "100%",
+    minHeight: 400,
   },
 });
 
@@ -18,17 +29,34 @@ const Dashboard = () => {
 
   return (
     <Box component="span" m={1}>
-      <h1>Dashboard</h1>
-      <Grid containter container spacing={4} className={classes.gridContainer}>
-        <Grid item xs={12} sm={6} md={4}>
+      <div>
+        <h1>Dashboard</h1>
+      </div>
+      <Grid container spacing={4} className={classes.gridContainer}>
+        <Grid item xs={12} sm={6} md={3}>
           <TotalPatients></TotalPatients>
         </Grid>
-        <Grid item xs={12} sm={6} md={4}>
+        <Grid item xs={12} sm={6} md={3}>
           <TotalPractioners></TotalPractioners>
         </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          <TotalPatients></TotalPatients>
+        <Grid item xs={12} sm={6} md={3}>
+          <Visits></Visits>
         </Grid>
+        <Grid item xs={12} sm={6} md={3}>
+          <Earning></Earning>
+        </Grid>
+        <Grid className={classes.patlist} item xs={12} sm={6} md={3}>
+          <h2>Hospital Survey</h2>
+          <Chart1></Chart1>
+        </Grid>
+        <Grid className={classes.patlist} item xs={12} sm={6} md={3}>
+          <h2>New Patients</h2>
+          <Chart2></Chart2>
+          <PatList></PatList>
+        </Grid>
+      </Grid>
+      <Grid container spacing={4} className={classes.gridContainer}>
+        <Grid item>{/* <Map></Map> */}</Grid>
       </Grid>
     </Box>
   );
