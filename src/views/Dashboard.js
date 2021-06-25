@@ -9,10 +9,10 @@ import {
   TotalPractioners,
   Visits,
   Earning,
-} from "../components/Num1";
+} from "../components/DashStuff/Num1";
 // import Map from "../components/Map";
-import PatList from "../components/PatList";
-import { Chart1, Chart2 } from "../components/Charts";
+import PatList from "../components/DashStuff/PatList";
+import { Chart1, Chart2 } from "../components/DashStuff/Charts";
 
 const useStyles = makeStyles({
   root: {
@@ -46,7 +46,7 @@ const Dashboard = () => {
           <Earning></Earning>
         </Grid>
         <Grid className={classes.patlist} item xs={12} sm={6} md={3}>
-          <h2>Hospital Survey</h2>
+          <h2>Hospital Analytics</h2>
           <Chart1></Chart1>
         </Grid>
         <Grid className={classes.patlist} item xs={12} sm={6} md={3}>
