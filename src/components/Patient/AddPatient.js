@@ -39,6 +39,8 @@ const initialValues = {
   gender: "male",
   phno: "",
   email: "",
+  //blood group,contact-relationship,lang,marital-status,
+  //emergency contact-name,emergency contact-no,emergency contact-gender,emergency contact-relationship
 };
 const genderItems = [
   { id: "male", title: "Male" },

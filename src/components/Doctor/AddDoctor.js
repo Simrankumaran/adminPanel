@@ -48,6 +48,7 @@ const initialValues = {
   email: "",
   department: "",
   isPermanent: "false",
+  //
 };
 const genderItems = [
   { id: "male", title: "Male" },
