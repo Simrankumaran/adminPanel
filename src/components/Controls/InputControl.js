@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function InputField(props) {
-  const { name, label, error = null, value, onChange } = props;
+  const { name, label, value, onChange } = props;
   const classes = useStyles();
   return (
     <TextField
@@ -19,7 +19,7 @@ export default function InputField(props) {
       name={name}
       value={value}
       onChange={onChange}
-      {...(error && { error: true, helperText: error })}
+      // {...(error && { error: true, helperText: error })}
     />
   );
 }

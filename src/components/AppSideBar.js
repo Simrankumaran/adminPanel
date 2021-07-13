@@ -12,7 +12,6 @@ import Dashboard from "../views/Dashboard";
 import Doctor from "../views/Doctor";
 import Patient from "../views/Patient";
 import Profile from "../views/Profile";
-// import AddDoctor from "./Doctor/AddDoctor";
 
 const drawerWidth = 240;
 

@@ -3,24 +3,36 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
+import { Card, Typography, CardContent } from "@material-ui/core";
 
 import {
   TotalPatients,
-  TotalPractioners,
+  HospitalBeds,
   Visits,
   Earning,
 } from "../components/DashStuff/Num1";
-// import Map from "../components/Map";
-import PatList from "../components/DashStuff/PatList";
-import { Chart1, Chart2 } from "../components/DashStuff/Charts";
+import { Chart1, Chart2, Chart3 } from "../components/DashStuff/Charts";
 
 const useStyles = makeStyles({
   root: {
     minWidth: 100,
   },
+  heading: {
+    fontSize: "large",
+    fontWeight: "bold",
+    padding: 5,
+    marginBottom: "10px",
+    textAlign: "center",
+  },
+  charts: {
+    //chart1
+    marginTop: "10px",
+    marginBottom: "10px",
+  },
   patlist: {
     minWidth: "100%",
     minHeight: 400,
+    padding: 20,
   },
 });
 
@@ -30,14 +42,18 @@ const Dashboard = () => {
   return (
     <Box component="span" m={1}>
       <div>
-        <h1>Dashboard</h1>
+        <Card className={classes.heading}>
+          <CardContent>
+            <Typography>DASHBOARD</Typography>
+          </CardContent>
+        </Card>
       </div>
-      <Grid container spacing={4} className={classes.gridContainer}>
+      <Grid container spacing={4} className={classes.charts}>
         <Grid item xs={12} sm={6} md={3}>
-          <TotalPatients></TotalPatients>
+          <HospitalBeds></HospitalBeds>
         </Grid>
         <Grid item xs={12} sm={6} md={3}>
-          <TotalPractioners></TotalPractioners>
+          <TotalPatients></TotalPatients>
         </Grid>
         <Grid item xs={12} sm={6} md={3}>
           <Visits></Visits>
@@ -46,17 +62,29 @@ const Dashboard = () => {
           <Earning></Earning>
         </Grid>
         <Grid className={classes.patlist} item xs={12} sm={6} md={3}>
-          <h2>Hospital Analytics</h2>
-          <Chart1></Chart1>
+          <Card className={classes.heading}>
+            <CardContent>
+              <Typography>Hospital Analytics</Typography>
+            </CardContent>
+          </Card>
+          <Chart1 className={classes.charts}></Chart1>
         </Grid>
-        <Grid className={classes.patlist} item xs={12} sm={6} md={3}>
-          <h2>New Patients</h2>
+        <Grid item xs={12} sm={6} md={4}>
+          <Card className={classes.heading}>
+            <CardContent>
+              <Typography>Hospital Staff</Typography>
+            </CardContent>
+          </Card>
           <Chart2></Chart2>
-          <PatList></PatList>
         </Grid>
-      </Grid>
-      <Grid container spacing={4} className={classes.gridContainer}>
-        <Grid item>{/* <Map></Map> */}</Grid>
+        <Grid item xs={12} sm={6} md={8}>
+          <Card className={classes.heading}>
+            <CardContent>
+              <Typography>Invoice</Typography>
+            </CardContent>
+          </Card>
+          <Chart3></Chart3>
+        </Grid>
       </Grid>
     </Box>
   );

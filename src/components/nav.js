@@ -10,7 +10,6 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import LocalHospitalIcon from "@material-ui/icons/LocalHospital";
 import PeopleIcon from "@material-ui/icons/People";
-import GroupWorkIcon from "@material-ui/icons/GroupWork";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -49,14 +48,6 @@ const Nav = () => {
                 <PeopleIcon></PeopleIcon>
               </ListItemIcon>
               <ListItemText primary="Patient" />
-            </ListItem>
-          </Link>
-          <Link to="/Organisation" className={classes.linkto}>
-            <ListItem button key="Organization">
-              <ListItemIcon>
-                <GroupWorkIcon></GroupWorkIcon>
-              </ListItemIcon>
-              <ListItemText primary="Organization" />
             </ListItem>
           </Link>
         </List>

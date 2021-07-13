@@ -10,20 +10,21 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { PieChart, Pie } from "recharts";
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import Paper from "@material-ui/core/Paper";
+import { makeStyles } from "@material-ui/core/styles";
 
-// import { makeStyles } from "@material-ui/core/styles";
+const useStyles = makeStyles({
+  table: {
+    minWidth: 650,
+  },
+});
 
-// import { LineChart, Line } from "recharts";
-
-// const useStyles = makeStyles({
-//   root: {
-//     minWidth: 100,
-//   },
-//   patlist: {
-//     minWidth: "100%",
-//     minHeight: 400,
-//   },
-// });
 const data = [
   {
     name: "Page A",
@@ -74,14 +75,14 @@ const Chart1 = () => {
     <ResponsiveContainer width="100%" height="80%">
       <LineChart
         width={500}
-        height={300}
+        height={400}
         data={data}
-        margin={{
-          top: 5,
-          right: 30,
-          left: 20,
-          bottom: 5,
-        }}
+        // margin={{
+        //   top: 5,
+        //   right: 30,
+        //   left: 20,
+        //   bottom: 5,
+        // }}
       >
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="name" />
@@ -107,23 +108,23 @@ const Chart2 = () => {
     { name: "Group C", value: 300 },
     { name: "Group D", value: 200 },
   ];
-  const data02 = [
-    { name: "A1", value: 100 },
-    { name: "A2", value: 300 },
-    { name: "B1", value: 100 },
-    { name: "B2", value: 80 },
-    { name: "B3", value: 40 },
-    { name: "B4", value: 30 },
-    { name: "B5", value: 50 },
-    { name: "C1", value: 100 },
-    { name: "C2", value: 200 },
-    { name: "D1", value: 150 },
-    { name: "D2", value: 50 },
-  ];
+  // const data02 = [
+  //   { name: "A1", value: 100 },
+  //   { name: "A2", value: 300 },
+  //   { name: "B1", value: 100 },
+  //   { name: "B2", value: 80 },
+  //   { name: "B3", value: 40 },
+  //   { name: "B4", value: 30 },
+  //   { name: "B5", value: 50 },
+  //   { name: "C1", value: 100 },
+  //   { name: "C2", value: 200 },
+  //   { name: "D1", value: 150 },
+  //   { name: "D2", value: 50 },
+  // ];
 
   return (
     <ResponsiveContainer width="100%" height="80%">
-      <PieChart width={400} height={400}>
+      <PieChart width={100} height={100}>
         <Pie
           data={data01}
           dataKey="value"
@@ -132,7 +133,7 @@ const Chart2 = () => {
           outerRadius={60}
           fill="#8884d8"
         />
-        <Pie
+        {/* <Pie
           data={data02}
           dataKey="value"
           cx="50%"
@@ -141,10 +142,50 @@ const Chart2 = () => {
           outerRadius={90}
           fill="#82ca9d"
           label
-        />
+        /> */}
       </PieChart>
     </ResponsiveContainer>
   );
 };
 
-export { Chart1, Chart2 };
+const Chart3 = () => {
+  const classes = useStyles();
+  function createData(name, calories, fat, carbs, protein) {
+    return { name, calories, fat, carbs, protein };
+  }
+  const rows = [
+    createData("1800", "Medication", 24, 159),
+    createData("1801", "Procedure", 37, 237),
+    createData("1802", "Blood Test", 24, 262),
+    createData("1803", "Consultation", 67, 305),
+    createData("1804", "Medication", 49, 356),
+  ];
+  return (
+    <TableContainer component={Paper}>
+      <Table className={classes.table} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell>PatientID</TableCell>
+            <TableCell align="right">Description</TableCell>
+            <TableCell align="right">Unit Price</TableCell>
+            <TableCell align="right">Amount</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows.map((row) => (
+            <TableRow key={row.name}>
+              <TableCell component="th" scope="row">
+                {row.name}
+              </TableCell>
+              <TableCell align="right">{row.calories}</TableCell>
+              <TableCell align="right">{row.fat}</TableCell>
+              <TableCell align="right">{row.carbs}</TableCell>
+              <TableCell align="right">{row.protein}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+  );
+};
+export { Chart1, Chart2, Chart3 };

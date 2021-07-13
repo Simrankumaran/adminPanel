@@ -21,7 +21,7 @@ const TotalPatients = () => {
   );
 };
 
-const TotalPractioners = () => {
+const HospitalBeds = () => {
   return (
     <div>
       <Card style={{ backgroundColor: "#F8DC81" }}>
@@ -30,7 +30,7 @@ const TotalPractioners = () => {
             70
           </Typography>
           <Typography variant="h5" component="h2">
-            Total Doctors
+            Beds Available
           </Typography>
         </CardContent>
       </Card>
@@ -72,4 +72,4 @@ const Earning = () => {
   );
 };
 
-export { TotalPatients, TotalPractioners, Visits, Earning };
+export { TotalPatients, HospitalBeds, Visits, Earning };

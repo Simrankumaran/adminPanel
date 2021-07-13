@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Dialog from "@material-ui/core/Dialog";
 import Grid from "@material-ui/core/Grid";
@@ -9,13 +9,12 @@ import Typography from "@material-ui/core/Typography";
 import CloseIcon from "@material-ui/icons/Close";
 import { Button } from "@material-ui/core";
 import Slide from "@material-ui/core/Slide";
-import { useForm, Form } from "../Controls/useForm";
+import { Form } from "../Controls/useForm";
 import InputField from "../Controls/InputControl";
 import RadioControl from "../Controls/RadioGroup";
-import DatePicker from "../Controls/DatePicker";
 import SelectControl from "../Controls/SelectControl";
-import CheckBoxControl from "../Controls/CheckBoxControl";
 import * as departments from "../services/departments";
+import axios from "axios";
 const useStyles = makeStyles((theme) => ({
   appBar: {
     position: "relative",
@@ -38,48 +37,63 @@ const useStyles = makeStyles((theme) => ({
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
-const initialValues = {
-  firstName: "",
-  lastName: "",
-  age: "",
-  dob: new Date(),
-  gender: "male",
-  phno: "",
-  email: "",
-  department: "",
-  isPermanent: "false",
-  //
-};
 const genderItems = [
   { id: "male", title: "Male" },
   { id: "female", title: "Female" },
   { id: "other", title: "Other" },
 ];
-
 const AddDoctor = (props) => {
   const { handleClose, open } = props;
   const classes = useStyles();
-  const validate = () => {
-    let temp = {};
-    temp.firstName = values.firstName ? "" : "This field is required.";
-    temp.lastName = values.lastName ? "" : "This field is required.";
-    temp.phno = values.phno.length > 9 ? "" : "Minimum 10 numbers required";
-    temp.email = /$^|.+@.+..+/.test(values.email) ? "" : "Email not valid";
-    temp.department =
-      values.department.length !== 0 ? "" : "This field is required.";
+  const [username, setUsername] = useState("");
+  const [secret, setSecret] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [entity_type, setEntityType] = useState("");
+  const [aadhar, setAadhar] = useState("");
+  const [org_id, setOrgId] = useState("");
+  const [fullname, setFullname] = useState("");
+  const [address, setAddress] = useState("");
+  const [dob, setDob] = useState("");
+  const [blood_group, setBloodgroup] = useState("");
+  const [gender, setGender] = useState("");
+  const [password, setPassword] = useState("");
+  //const [status,setStatus]=useState("active");
+  //const [department,setDepartment]=usestate("");
 
-    setErrors({
-      ...temp,
-    });
-
-    return Object.values(temp).every((x) => x === "");
+  const formReset = (e) => {
+    e.preventDefault();
+    // setUsername.value = "";
+    // setSecret.value = "";
   };
-  const { values, handleInputChange, errors, setErrors } =
-    useForm(initialValues);
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (validate()) window.alert("testing");
+    const data = {
+      username: username,
+      secret: secret,
+      phone: phone,
+      email: email,
+      entity_type: entity_type,
+      aadhar: aadhar,
+      org_id: org_id,
+      fullname: fullname,
+      address: address,
+      dob: dob,
+      blood_group: blood_group,
+      gender: gender,
+      password: password,
+      //status:status,
+      //department:department,
+    };
+
+    const headers = {
+      "Access-Control-Allow-Origin": "*",
+      "Content-Type": "application/json",
+    };
+    axios
+      .post("http://localhost:8000/user/add", data, headers)
+      .then((res) => console.log(res))
+      .catch((res) => console.log(res.response));
   };
   return (
     <div>
@@ -103,7 +117,7 @@ const AddDoctor = (props) => {
               Enter doctor details
             </Typography>
             <Button autoFocus color="inherit" onClick={handleClose}>
-              Reset
+              Close
             </Button>
           </Toolbar>
         </AppBar>
@@ -111,54 +125,99 @@ const AddDoctor = (props) => {
           <Grid container>
             <Grid item xs={6}>
               <InputField
-                name="firstName"
-                label="FirstName"
-                value={values.firstName}
-                onChange={handleInputChange}
-                error={errors.firstName}
+                name="username"
+                label="Username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
               ></InputField>
             </Grid>
             <Grid item xs={6}>
               <InputField
-                label="LastName"
-                name="lastName"
-                value={values.lastName}
-                onChange={handleInputChange}
-                error={errors.lastName}
-              />
-            </Grid>
-            <Grid item xs={6}>
-              <InputField
-                label="Age"
-                name="age"
-                value={values.age}
-                onChange={handleInputChange}
-              />
-            </Grid>
-            <Grid item xs={6}>
-              <DatePicker
-                label="Date of birth"
-                name="dob"
-                value={values.dob}
-                onChange={handleInputChange}
+                label="Secret"
+                name="secret"
+                value={secret}
+                onChange={(e) => setSecret(e.target.value)}
               />
             </Grid>
             <Grid item xs={6}>
               <InputField
                 label="Phone Number"
-                name="phno"
-                value={values.phno}
-                onChange={handleInputChange}
-                error={errors.phno}
+                name="phone"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
               />
             </Grid>
             <Grid item xs={6}>
               <InputField
                 label="Email"
                 name="email"
-                value={values.email}
-                onChange={handleInputChange}
-                error={errors.email}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <SelectControl
+                label="Department"
+                name="entity_type"
+                value={entity_type}
+                onChange={(e) => setEntityType(e.target.value)}
+                options={departments.DepartmentID()}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <InputField
+                label="Aadhar"
+                name="aadhar"
+                value={aadhar}
+                onChange={(e) => setAadhar(e.target.value)}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <InputField
+                label="Organisation"
+                name="org_id"
+                value={org_id}
+                onChange={(e) => setOrgId(e.target.value)}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <InputField
+                label="Fullname"
+                name="fullname"
+                value={fullname}
+                onChange={(e) => setFullname(e.target.value)}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <InputField
+                label="Address"
+                name="address"
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <InputField
+                label="Date of birth"
+                name="dob"
+                value={dob}
+                onChange={(e) => setDob(e.target.value)}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <InputField
+                label="Blood group"
+                name="blood_group"
+                value={blood_group}
+                onChange={(e) => setBloodgroup(e.target.value)}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <InputField
+                label="Password"
+                name="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </Grid>
             <Grid item xs={6}>
@@ -166,39 +225,33 @@ const AddDoctor = (props) => {
                 row
                 label="Gender"
                 name="gender"
-                value={values.gender}
-                onChange={handleInputChange}
+                value={gender}
+                onChange={(e) => setGender(e.target.value)}
                 items={genderItems}
               ></RadioControl>
             </Grid>
             <Grid item xs={6}>
-              <SelectControl
-                label="Department"
-                name="department"
-                value={values.department}
-                onChange={handleInputChange}
-                options={departments.DepartmentID()}
-                error={errors.department}
-              />
+              <Button
+                classes={{ root: classes.root, label: classes.label }}
+                variant="contained"
+                size="large"
+                color="primary"
+                type="submit"
+                disableElevation
+              >
+                Submit
+              </Button>
+              <Button
+                classes={{ root: classes.root, label: classes.label }}
+                variant="contained"
+                size="large"
+                color="primary"
+                type="reset"
+                onClick={formReset}
+              >
+                Reset
+              </Button>
             </Grid>
-            <Grid item xs={6}>
-              <CheckBoxControl
-                label="Permanent"
-                name="isPermanent"
-                value={values.isPermanent}
-                onChange={handleInputChange}
-              />
-            </Grid>
-            <Button
-              classes={{ root: classes.root, label: classes.label }}
-              variant="contained"
-              size="large"
-              color="primary"
-              type="submit"
-              //   text="Submit"
-            >
-              Submit
-            </Button>
           </Grid>
         </Form>
       </Dialog>
