@@ -1,12 +1,15 @@
 import React from "react";
+import { BrowserRouter, Route } from "react-router-dom";
+import AdminView from "./components/AdminView/AdminView";
+import CareTeamView from "./components/CareTeam/CareTeamView";
 
-import AppSideBar from "./components/AppSideBar";
 // Containers
 const App = () => {
   return (
-    <div>
-      <AppSideBar />
-    </div>
+    <BrowserRouter>
+      <Route path="/Admin" component={AdminView} />
+      <Route path="/CareTeam" component={CareTeamView} />
+    </BrowserRouter>
   );
 };
 

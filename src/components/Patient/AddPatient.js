@@ -45,55 +45,114 @@ const genderItems = [
 const AddPatient = (props) => {
   const { handleClose, open } = props;
   const classes = useStyles();
-  const [username, setUsername] = useState("");
-  const [secret, setSecret] = useState("");
-  const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
-  const [entity_type, setEntityType] = useState("");
-  const [aadhar, setAadhar] = useState("");
-  const [org_id, setOrgId] = useState("");
-  const [fullname, setFullname] = useState("");
-  const [address, setAddress] = useState("");
-  const [dob, setDob] = useState("");
-  const [blood_group, setBloodgroup] = useState("");
-  const [gender, setGender] = useState("");
-  const [password, setPassword] = useState("");
+  const [details, setDetails] = useState({
+    username: "",
+    secret: "",
+    phone: "",
+    email: "",
+    entity_type: "",
+    aadhar: "",
+    org_id: "",
+    fullname: "",
+    address: "",
+    dob: "",
+    blood_group: "",
+    gender: "",
+    password: "",
+    status: "Active",
+    department: "",
+    martial_status: "",
+    communication_language: "",
+    contact_relationship: "",
+    contact_name: "",
+    contact_number: "",
+    bloodgroup: "",
+  });
+
   //const [status,setStatus]=useState("active");
   //const [department,setDepartment]=usestate("");
 
   const formReset = (e) => {
     e.preventDefault();
-    // setUsername.value = "";
-    // setSecret.value = "";
+    setDetails({
+      username: "",
+      secret: "",
+      phone: "",
+      email: "",
+      entity_type: "",
+      aadhar: "",
+      org_id: 1,
+      fullname: "",
+      address: "",
+      dob: "",
+      blood_group: "",
+      gender: "",
+      password: "",
+      status: "Active",
+      martial_status: "",
+      communication_language: "",
+      contact_relationship: "",
+      contact_name: "",
+      contact_number: "",
+      bloodgroup: "",
+    });
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    const data = {
-      username: username,
-      secret: secret,
-      phone: phone,
-      email: email,
-      entity_type: entity_type,
-      aadhar: aadhar,
-      org_id: org_id,
-      fullname: fullname,
-      address: address,
-      dob: dob,
-      blood_group: blood_group,
-      gender: gender,
-      password: password,
-      //status:status,
-      //department:department,
-    };
+    const userdata = {
+      username: details.username,
+      secret: details.secret,
+      phone: details.phone,
+      email: details.email,
+      entity_type: details.entity_type,
+      aadhar: details.aadhar,
+      org_id: details.org_id,
+      fullname: details.fullname,
+      address: details.address,
+      dob: details.dob,
+      blood_group: details.blood_group,
+      gender: details.gender,
+      password: details.password,
+      status: details.status,
 
+      // department: details.department,
+    };
+    const patdata = {
+      martial_status: details.martial_status,
+      communication_language: details.communication_language,
+      contact_relationship: details.contact_relationship,
+      contact_name: details.contact_name,
+      contact_number: details.contact_number,
+      bloodgroup: details.bloodgroup,
+      status: details.status,
+      user_id: 0,
+    };
     const headers = {
       "Access-Control-Allow-Origin": "*",
       "Content-Type": "application/json",
     };
+    console.log(userdata);
     axios
-      .post("http://localhost:8000/user/add", data, headers)
-      .then((res) => console.log(res))
+      .post("http://localhost:8000/user/add", userdata, headers)
+      .then((res) => {
+        if (res.status === 200) {
+          console.log(res.user_id);
+          patdata.user_id = res.user_id;
+          axios
+            .post("http://localhost:8000/patient/add", patdata, headers)
+            .then((res) => {
+              if (res.status === 200) {
+                console.log("CREATED A PATIENT");
+              }
+            });
+        }
+      })
       .catch((res) => console.log(res.response));
+  };
+  const handleInputChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setDetails({ ...details, [name]: value });
   };
   return (
     <div>
@@ -127,40 +186,40 @@ const AddPatient = (props) => {
               <InputField
                 name="username"
                 label="Username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                value={details.username}
+                onChange={handleInputChange}
               ></InputField>
             </Grid>
             <Grid item xs={6}>
               <InputField
                 label="Secret"
                 name="secret"
-                value={secret}
-                onChange={(e) => setSecret(e.target.value)}
+                value={details.secret}
+                onChange={handleInputChange}
               />
             </Grid>
             <Grid item xs={6}>
               <InputField
                 label="Phone Number"
                 name="phone"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
+                value={details.phone}
+                onChange={handleInputChange}
               />
             </Grid>
             <Grid item xs={6}>
               <InputField
                 label="Email"
                 name="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={details.email}
+                onChange={handleInputChange}
               />
             </Grid>
             <Grid item xs={6}>
               <SelectControl
-                label="Department"
+                label="Entity Type"
                 name="entity_type"
-                value={entity_type}
-                onChange={(e) => setEntityType(e.target.value)}
+                value={details.entity_type}
+                onChange={handleInputChange}
                 options={departments.DepartmentID()}
               />
             </Grid>
@@ -168,65 +227,122 @@ const AddPatient = (props) => {
               <InputField
                 label="Aadhar"
                 name="aadhar"
-                value={aadhar}
-                onChange={(e) => setAadhar(e.target.value)}
+                value={details.aadhar}
+                onChange={handleInputChange}
               />
             </Grid>
             <Grid item xs={6}>
               <InputField
                 label="Organisation"
                 name="org_id"
-                value={org_id}
-                onChange={(e) => setOrgId(e.target.value)}
+                value={details.org_id}
+                onChange={handleInputChange}
               />
             </Grid>
             <Grid item xs={6}>
               <InputField
                 label="Fullname"
                 name="fullname"
-                value={fullname}
-                onChange={(e) => setFullname(e.target.value)}
+                value={details.fullname}
+                onChange={handleInputChange}
               />
             </Grid>
             <Grid item xs={6}>
               <InputField
                 label="Address"
                 name="address"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
+                value={details.address}
+                onChange={handleInputChange}
               />
             </Grid>
             <Grid item xs={6}>
               <InputField
                 label="Date of birth"
                 name="dob"
-                value={dob}
-                onChange={(e) => setDob(e.target.value)}
+                value={details.dob}
+                onChange={handleInputChange}
               />
             </Grid>
             <Grid item xs={6}>
               <InputField
                 label="Blood group"
                 name="blood_group"
-                value={blood_group}
-                onChange={(e) => setBloodgroup(e.target.value)}
+                value={details.blood_group}
+                onChange={handleInputChange}
               />
             </Grid>
             <Grid item xs={6}>
               <InputField
                 label="Password"
                 name="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                value={details.password}
+                onChange={handleInputChange}
               />
             </Grid>
+            <Grid item xs={6}>
+              <InputField
+                label="Status"
+                name="status"
+                value={details.status}
+                onChange={handleInputChange}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <InputField
+                label="Martial Status"
+                name="martial_status"
+                value={details.martial_status}
+                onChange={handleInputChange}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <InputField
+                label="Communication Language"
+                name="communication_language"
+                value={details.communication_language}
+                onChange={handleInputChange}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <InputField
+                label="Contact Relationship"
+                name="contact_relationship"
+                value={details.contact_relationship}
+                onChange={handleInputChange}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <InputField
+                label="Contact Name"
+                name="contact_name"
+                value={details.contact_name}
+                onChange={handleInputChange}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <InputField
+                label="Contact Number"
+                name="contact_number"
+                value={details.contact_number}
+                onChange={handleInputChange}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <InputField
+                label="Bloodgroup"
+                name="bloodgroup"
+                value={details.bloodgroup}
+                onChange={handleInputChange}
+              />
+            </Grid>
+
             <Grid item xs={6}>
               <RadioControl
                 row
                 label="Gender"
                 name="gender"
-                value={gender}
-                onChange={(e) => setGender(e.target.value)}
+                value={details.gender}
+                onChange={handleInputChange}
                 items={genderItems}
               ></RadioControl>
             </Grid>

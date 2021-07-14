@@ -22,10 +22,10 @@ export default function SelectControl(props) {
     <FormControl className={classes.root} variant="outlined">
       <InputLabel>{label}</InputLabel>
       <Select label={label} name={name} value={value} onChange={onChange}>
-        <MenuItem value=""></MenuItem>
+        <MenuItem value="">None</MenuItem>
         {options.map((item) => (
-          <MenuItem key={item.id} value={item.title}>
-            {item.title}
+          <MenuItem key={item.Display} value={item.Display}>
+            {item.Display}
           </MenuItem>
         ))}
       </Select>

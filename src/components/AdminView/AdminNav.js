@@ -26,7 +26,7 @@ const Nav = () => {
     <div>
       <div>
         <List>
-          <Link to="/" className={classes.linkto}>
+          <Link to="/Admin/Dashboard" className={classes.linkto}>
             <ListItem button key="Dashboard">
               <ListItemIcon>
                 <DashboardIcon></DashboardIcon>
@@ -34,7 +34,7 @@ const Nav = () => {
               <ListItemText primary="Dashboard" />
             </ListItem>
           </Link>
-          <Link to="/Doctor" className={classes.linkto}>
+          <Link to="/Admin/Doctor" className={classes.linkto}>
             <ListItem button key="Doctor">
               <ListItemIcon>
                 <LocalHospitalIcon></LocalHospitalIcon>
@@ -42,7 +42,7 @@ const Nav = () => {
               <ListItemText primary="Doctor" />
             </ListItem>
           </Link>
-          <Link to="/Patient" className={classes.linkto}>
+          <Link to="/Admin/Patient" className={classes.linkto}>
             <ListItem button key="Patient">
               <ListItemIcon>
                 <PeopleIcon></PeopleIcon>
@@ -53,7 +53,7 @@ const Nav = () => {
         </List>
         <Divider />
         <List>
-          <Link to="/Profile" className={classes.linkto}>
+          <Link to="/Admin/Profile" className={classes.linkto}>
             <ListItem button key="Profile">
               <ListItemIcon>
                 <EmailIcon></EmailIcon>

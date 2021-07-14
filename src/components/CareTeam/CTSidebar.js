@@ -7,11 +7,11 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Toolbar from "@material-ui/core/Toolbar";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import Nav from "./nav";
-import Dashboard from "../views/Dashboard";
-import Doctor from "../views/Doctor";
-import Patient from "../views/Patient";
-import Profile from "../views/Profile";
+import Nav from "./CareTeamNav";
+import Clinical from "./ClinicalTab/ClinicalTab";
+import CTProfile from "./CTProfile";
+import Appointments from "./Appointments";
+import Finance from "./Invoice";
 
 const drawerWidth = 240;
 
@@ -67,10 +67,13 @@ export default function ClippedDrawer() {
         <main className={classes.content}>
           <Toolbar />
           <Switch>
-            <Route path="/" exact component={Dashboard}></Route>
-            <Route path="/Doctor" component={Doctor}></Route>
-            <Route path="/Patient" component={Patient}></Route>
-            <Route path="/Profile" component={Profile}></Route>
+            <Route path="/CareTeam/Clinical" exact component={Clinical}></Route>
+            <Route path="/CareTeam/Finance" component={Finance}></Route>
+            <Route
+              path="/CareTeam/Appointments"
+              component={Appointments}
+            ></Route>
+            <Route path="/CareTeam/Profile" component={CTProfile}></Route>
           </Switch>
         </main>
       </div>
