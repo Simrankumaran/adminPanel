@@ -68,7 +68,7 @@ const Allergy = () => {
       .post("http://localhost:8000/allergy/add", data, headers)
       .then((res) => {
         if (res.code === 200) {
-          console.log(res);
+          console.log(res.data.allergy_id);
         }
       })
       .catch((res) => console.log(res.response));

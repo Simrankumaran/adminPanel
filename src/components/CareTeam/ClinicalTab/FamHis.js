@@ -74,7 +74,7 @@ const FamHis = () => {
       .post("http://localhost:8000/familyhistory/add", data, headers)
       .then((res) => {
         if (res.code === 200) {
-          console.log(res);
+          console.log(res.data);
         }
       })
       .catch((res) => console.log(res.response));

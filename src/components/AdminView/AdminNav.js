@@ -50,7 +50,16 @@ const Nav = () => {
               <ListItemText primary="Patient" />
             </ListItem>
           </Link>
+          <Link to="/Admin/CareTeam" className={classes.linkto}>
+            <ListItem button key="CareTeam">
+              <ListItemIcon>
+                <PeopleIcon></PeopleIcon>
+              </ListItemIcon>
+              <ListItemText primary="CareTeam" />
+            </ListItem>
+          </Link>
         </List>
+
         <Divider />
         <List>
           <Link to="/Admin/Profile" className={classes.linkto}>

@@ -61,6 +61,7 @@ const AddDoctor = (props) => {
     password: "",
     status: "Active",
     department: "",
+    user_id: 0,
   });
 
   const formReset = (e) => {
@@ -80,6 +81,8 @@ const AddDoctor = (props) => {
       gender: "",
       password: "",
       status: "Active",
+      department: "",
+      user_id: 0,
     });
   };
   const handleSubmit = (e) => {
@@ -99,11 +102,7 @@ const AddDoctor = (props) => {
       gender: details.gender,
       password: details.password,
     };
-    const patdata = {
-      department: details.department,
-      status: details.status,
-      user_id: 0,
-    };
+
     const headers = {
       "Access-Control-Allow-Origin": "*",
       "Content-Type": "application/json",
@@ -113,13 +112,23 @@ const AddDoctor = (props) => {
       .post("http://localhost:8000/user/add", userdata, headers)
       .then((res) => {
         if (res.status === 200) {
-          console.log(res.user_id);
-          patdata.user_id = res.user_id;
+          setDetails({ ...details, user_id: res.data.user_id });
+          const docdata = {
+            department: details.department,
+            status: details.status,
+            user_id: res.data.user_id,
+          };
+          console.log(res.data.user_id);
+          console.log(details.user_id);
+          console.log("THIS IS doc USER ID");
+          console.log(docdata.user_id);
+          console.log(res.data.user_id);
           axios
-            .post("http://localhost:8000/practitioner/add", patdata, headers)
+            .post("http://localhost:8000/practitioner/add", docdata, headers)
             .then((res) => {
+              console.log("before condition");
               if (res.status === 200) {
-                console.log("CREATED A PATIENT");
+                console.log("CREATED A DOCTOR");
               }
             });
         }

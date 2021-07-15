@@ -67,10 +67,8 @@ const AddPatient = (props) => {
     contact_name: "",
     contact_number: "",
     bloodgroup: "",
+    user_id: 0,
   });
-
-  //const [status,setStatus]=useState("active");
-  //const [department,setDepartment]=usestate("");
 
   const formReset = (e) => {
     e.preventDefault();
@@ -95,6 +93,7 @@ const AddPatient = (props) => {
       contact_name: "",
       contact_number: "",
       bloodgroup: "",
+      user_id: 0,
     });
   };
   const handleSubmit = (e) => {
@@ -113,20 +112,8 @@ const AddPatient = (props) => {
       blood_group: details.blood_group,
       gender: details.gender,
       password: details.password,
-      status: details.status,
+    };
 
-      // department: details.department,
-    };
-    const patdata = {
-      martial_status: details.martial_status,
-      communication_language: details.communication_language,
-      contact_relationship: details.contact_relationship,
-      contact_name: details.contact_name,
-      contact_number: details.contact_number,
-      bloodgroup: details.bloodgroup,
-      status: details.status,
-      user_id: 0,
-    };
     const headers = {
       "Access-Control-Allow-Origin": "*",
       "Content-Type": "application/json",
@@ -136,11 +123,26 @@ const AddPatient = (props) => {
       .post("http://localhost:8000/user/add", userdata, headers)
       .then((res) => {
         if (res.status === 200) {
-          console.log(res.user_id);
-          patdata.user_id = res.user_id;
+          setDetails({ user_id: res.data.user_id });
+          const patdata = {
+            martial_status: details.martial_status,
+            communication_language: details.communication_language,
+            contact_relationship: details.contact_relationship,
+            contact_name: details.contact_name,
+            contact_number: details.contact_number,
+            bloodgroup: details.bloodgroup,
+            status: details.status,
+            user_id: res.data.user_id,
+          };
+          // console.log(res.data.user_id);
+          console.log(details.user_id);
+          console.log("THIS IS patient USER ID");
+          // console.log(patdata.user_id);
+          console.log(res.data.user_id);
           axios
             .post("http://localhost:8000/patient/add", patdata, headers)
             .then((res) => {
+              console.log("before condition");
               if (res.status === 200) {
                 console.log("CREATED A PATIENT");
               }
@@ -219,6 +221,7 @@ const AddPatient = (props) => {
                 label="Entity Type"
                 name="entity_type"
                 value={details.entity_type}
+                defaultValue={""}
                 onChange={handleInputChange}
                 options={departments.DepartmentID()}
               />

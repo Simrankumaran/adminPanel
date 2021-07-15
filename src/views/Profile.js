@@ -59,7 +59,7 @@ const Profile = () => {
         <Grid container spacing={6}>
           {" "}
           <Grid item>
-            <Avatar src="./Pic3.jpg" className={classes.profilepic} />
+            <Avatar src="../Pic3.jpg" className={classes.profilepic} />
           </Grid>
           <Grid item>
             <Typography className={classes.adminname}>

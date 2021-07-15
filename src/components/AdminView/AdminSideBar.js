@@ -12,6 +12,7 @@ import Dashboard from "../../views/Dashboard";
 import Doctor from "../../views/Doctor";
 import Patient from "../../views/Patient";
 import Profile from "../../views/Profile";
+import CareTeam from "../../views/CareTeam";
 
 const drawerWidth = 240;
 
@@ -71,6 +72,7 @@ export default function ClippedDrawer() {
             <Route path="/Admin/Doctor" component={Doctor}></Route>
             <Route path="/Admin/Patient" component={Patient}></Route>
             <Route path="/Admin/Profile" component={Profile}></Route>
+            <Route path="/Admin/CareTeam" component={CareTeam}></Route>
           </Switch>
         </main>
       </div>
