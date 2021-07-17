@@ -104,7 +104,7 @@ const CareTeam = (props) => {
       .post("http://localhost:8000/user/add", userdata, headers)
       .then((res) => {
         if (res.status === 200) {
-          setDetails({ ...details, user_id: res.data.user_id });
+          // setDetails({ ...details, user_id: res.data.user_id });
           const docdata = {
             department: details.department,
             status: details.status,

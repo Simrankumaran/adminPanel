@@ -10,7 +10,7 @@ import * as category from "../../../JSONFILES/Problems/category";
 import * as clinical_status from "../../../JSONFILES/Problems/clinical_status";
 import * as reaction_severity from "../../../JSONFILES/Problems/reaction_severity";
 import * as severity from "../../../JSONFILES/Problems/severity";
-
+import * as code from "../../../JSONFILES/Problems/code";
 import axios from "axios";
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -44,7 +44,6 @@ const Problems = () => {
     category: "",
     clinical_status: "",
     code: "",
-    // evidence_code: "",
     reaction_severity: "",
     severity: "",
   });
@@ -52,10 +51,8 @@ const Problems = () => {
     e.preventDefault();
     const data = {
       patient_id: details.patient_id,
-      // condition_code: details.condition_code,
       body_site: details.body_site,
       category: details.category,
-      // reason_code: details.reason_code,
       clinical_status: details.clinical_status,
       code: details.code,
       reaction_severity: details.reaction_severity,
@@ -83,7 +80,6 @@ const Problems = () => {
       category: "",
       clinical_status: "",
       code: "",
-      // evidence_code: "",
       reaction_severity: "",
       severity: "",
     });
@@ -134,6 +130,16 @@ const Problems = () => {
             autocomplete
             onChange={handleInputChange}
             options={clinical_status.Status()}
+          />
+        </Grid>
+        <Grid item xs={6}>
+          <SelectControl
+            label="Code"
+            name="code"
+            value={details.code}
+            autocomplete
+            onChange={handleInputChange}
+            options={code.ProblemCode()}
           />
         </Grid>
 

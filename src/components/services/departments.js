@@ -1,7 +1,6 @@
 export const DepartmentID = () => [
-  { id: "1", title: "Patient" },
-  { id: "2", title: "Practioner" },
-  { id: "3", title: "CareTeam" },
-  // { id: "4", title: "Dentist" },
-  // { id: "5", title: "ENT" },
+  { id: "1", title: "Careteam" },
+  { id: "2", title: "Practitioner" },
+  { id: "3", title: "Patient" },
+  { id: "4", title: "Admin" },
 ];

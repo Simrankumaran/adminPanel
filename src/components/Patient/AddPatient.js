@@ -59,14 +59,13 @@ const AddPatient = (props) => {
     blood_group: "",
     gender: "",
     password: "",
-    status: "Active",
-    department: "",
     martial_status: "",
     communication_language: "",
     contact_relationship: "",
     contact_name: "",
     contact_number: "",
-    bloodgroup: "",
+    contact_bloodgroup: "",
+    status: "Active",
     user_id: 0,
   });
 
@@ -79,20 +78,20 @@ const AddPatient = (props) => {
       email: "",
       entity_type: "",
       aadhar: "",
-      org_id: 1,
+      org_id: "",
       fullname: "",
       address: "",
       dob: "",
       blood_group: "",
       gender: "",
       password: "",
-      status: "Active",
       martial_status: "",
       communication_language: "",
       contact_relationship: "",
       contact_name: "",
       contact_number: "",
-      bloodgroup: "",
+      contact_bloodgroup: "",
+      status: "Active",
       user_id: 0,
     });
   };
@@ -123,22 +122,19 @@ const AddPatient = (props) => {
       .post("http://localhost:8000/user/add", userdata, headers)
       .then((res) => {
         if (res.status === 200) {
-          setDetails({ user_id: res.data.user_id });
           const patdata = {
             martial_status: details.martial_status,
             communication_language: details.communication_language,
             contact_relationship: details.contact_relationship,
             contact_name: details.contact_name,
             contact_number: details.contact_number,
-            bloodgroup: details.bloodgroup,
+            contact_bloodgroup: details.contact_bloodgroup,
             status: details.status,
             user_id: res.data.user_id,
           };
-          // console.log(res.data.user_id);
-          console.log(details.user_id);
-          console.log("THIS IS patient USER ID");
-          // console.log(patdata.user_id);
           console.log(res.data.user_id);
+          console.log("THIS IS patient USER ID");
+          console.log(details.user_id);
           axios
             .post("http://localhost:8000/patient/add", patdata, headers)
             .then((res) => {
@@ -221,7 +217,6 @@ const AddPatient = (props) => {
                 label="Entity Type"
                 name="entity_type"
                 value={details.entity_type}
-                defaultValue={""}
                 onChange={handleInputChange}
                 options={departments.DepartmentID()}
               />
@@ -333,12 +328,11 @@ const AddPatient = (props) => {
             <Grid item xs={6}>
               <InputField
                 label="Bloodgroup"
-                name="bloodgroup"
-                value={details.bloodgroup}
+                name="contact_bloodgroup"
+                value={details.contact_bloodgroup}
                 onChange={handleInputChange}
               />
             </Grid>
-
             <Grid item xs={6}>
               <RadioControl
                 row

@@ -80,11 +80,12 @@ const AddDoctor = (props) => {
       blood_group: "",
       gender: "",
       password: "",
+      user_id: 0,
       status: "Active",
       department: "",
-      user_id: 0,
     });
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const userdata = {
@@ -107,22 +108,28 @@ const AddDoctor = (props) => {
       "Access-Control-Allow-Origin": "*",
       "Content-Type": "application/json",
     };
+
     console.log(userdata);
     axios
       .post("http://localhost:8000/user/add", userdata, headers)
       .then((res) => {
         if (res.status === 200) {
-          setDetails({ ...details, user_id: res.data.user_id });
+          // updateUserId(res.data.user_id);
           const docdata = {
             department: details.department,
             status: details.status,
             user_id: res.data.user_id,
           };
+          // const ID = res.data.user_id;
+          // this.setDetails((details) => ({
+          //   ...details,
+          //   user_id: ID,
+          // }));
           console.log(res.data.user_id);
-          console.log(details.user_id);
           console.log("THIS IS doc USER ID");
-          console.log(docdata.user_id);
-          console.log(res.data.user_id);
+          console.log(details.user_id);
+          // console.log(docdata.user_id);
+          // console.log(res.data.user_id);
           axios
             .post("http://localhost:8000/practitioner/add", docdata, headers)
             .then((res) => {

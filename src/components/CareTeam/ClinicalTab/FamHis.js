@@ -5,8 +5,8 @@ import Grid from "@material-ui/core/Grid";
 import { Button } from "@material-ui/core";
 import InputField from "../../Controls/InputControl";
 import SelectControl from "../../Controls/CTSelectControl";
-import * as condition_outcome from "../../../JSONFILES/FamilyHistory/condition_outcome";
-import * as data_absent_reason from "../../../JSONFILES/FamilyHistory/data_absent_reason";
+import * as condition_code from "../../../JSONFILES/FamilyHistory/condition_outcome";
+// import * as data_absent_reason from "../../../JSONFILES/FamilyHistory/data_absent_reason";
 import * as famrelationship from "../../../JSONFILES/FamilyHistory/famrelationship";
 import * as famstatus from "../../../JSONFILES/FamilyHistory/famstatus";
 
@@ -45,9 +45,9 @@ const FamHis = () => {
   const classes = useStyles();
   const [details, setDetails] = useState({
     patient_id: "",
-    // condition_code: "",
-    condition_outcome: "",
-    data_absent_reason: "",
+    condition_code: "",
+    // condition_outcome: "",
+    // data_absent_reason: "",
     // reason_code: "",
     relationship: "",
     sex: "",
@@ -57,9 +57,9 @@ const FamHis = () => {
     e.preventDefault();
     const data = {
       patient_id: details.patient_id,
-      // condition_code: details.condition_code,
-      condition_outcome: details.condition_outcome,
-      data_absent_reason: details.data_absent_reason,
+      condition_code: details.condition_code,
+      // condition_outcome: details.condition_outcome,
+      // data_absent_reason: details.data_absent_reason,
       // reason_code: details.reason_code,
       relationship: details.relationship,
       sex: details.sex,
@@ -83,8 +83,8 @@ const FamHis = () => {
     e.preventDefault();
     setDetails({
       patient_id: "",
-      // condition_code: "",
-      condition_outcome: "",
+      condition_code: "",
+      // condition_outcome: "",
       data_absent_reason: "",
       // reason_code: "",
       relationship: "",
@@ -111,22 +111,12 @@ const FamHis = () => {
 
         <Grid item xs={6}>
           <SelectControl
-            label="Condition Outcome"
-            name="condition_outcome"
-            value={details.condition_outcome}
+            label="Condition code"
+            name="condition_code"
+            value={details.condition_code}
             autocomplete
             onChange={handleInputChange}
-            options={condition_outcome.Outcome()}
-          />
-        </Grid>
-        <Grid item xs={6}>
-          <SelectControl
-            label="Data Absent Reason"
-            name="data_absent_reason"
-            value={details.data_absent_reason}
-            autocomplete
-            onChange={handleInputChange}
-            options={data_absent_reason.AbsentReason()}
+            options={condition_code.Outcome()}
           />
         </Grid>
 

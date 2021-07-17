@@ -49,6 +49,14 @@ const Nav = () => {
             <ListItemText primary="Appointments" />
           </ListItem>
         </Link>
+        <Link to="/CareTeam/BedStatus" className={classes.linkto}>
+          <ListItem button key="Add Bed">
+            <ListItemIcon>
+              <PeopleIcon></PeopleIcon>
+            </ListItemIcon>
+            <ListItemText primary="Add Bed" />
+          </ListItem>
+        </Link>
       </List>
       <Divider />
       <List>

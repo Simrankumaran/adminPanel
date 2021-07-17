@@ -11,7 +11,10 @@ import {
   Visits,
   Earning,
 } from "../components/DashStuff/Num1";
-import { Chart1, Chart2, Chart3 } from "../components/DashStuff/Charts";
+import { Chart1 } from "../components/DashStuff/Charts";
+import Chart2 from "../components/DashStuff/DocGraph";
+import Chart3 from "../components/DashStuff/CTChart";
+import Chart4 from "../components/DashStuff/PatGender";
 
 const useStyles = makeStyles({
   root: {
@@ -23,6 +26,8 @@ const useStyles = makeStyles({
     padding: 5,
     marginBottom: "10px",
     textAlign: "center",
+    backgroundColor: "#CCF6C8",
+    color: "black",
   },
   charts: {
     //chart1
@@ -64,7 +69,7 @@ const Dashboard = () => {
         <Grid className={classes.patlist} item xs={12} sm={6} md={3}>
           <Card className={classes.heading}>
             <CardContent>
-              <Typography>Hospital Analytics</Typography>
+              <Typography>HOSPITAL ANALYTICS</Typography>
             </CardContent>
           </Card>
           <Chart1 className={classes.charts}></Chart1>
@@ -72,18 +77,27 @@ const Dashboard = () => {
         <Grid item xs={12} sm={6} md={4}>
           <Card className={classes.heading}>
             <CardContent>
-              <Typography>Hospital Staff</Typography>
+              <Typography>DOCTORS PER DEPT</Typography>
             </CardContent>
           </Card>
           <Chart2></Chart2>
         </Grid>
-        <Grid item xs={12} sm={6} md={8}>
+
+        <Grid item xs={12} sm={6} md={4}>
           <Card className={classes.heading}>
             <CardContent>
-              <Typography>Invoice</Typography>
+              <Typography>CARETEAM PER DEPT</Typography>
             </CardContent>
           </Card>
           <Chart3></Chart3>
+        </Grid>
+        <Grid item xs={12} sm={6} md={4}>
+          <Card className={classes.heading}>
+            <CardContent>
+              <Typography>PATIENT DISTRIBUTION</Typography>
+            </CardContent>
+          </Card>
+          <Chart4></Chart4>
         </Grid>
       </Grid>
     </Box>

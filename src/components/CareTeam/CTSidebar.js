@@ -12,6 +12,7 @@ import Clinical from "./ClinicalTab/ClinicalTab";
 import CTProfile from "./CTProfile";
 import Appointments from "./Appointments";
 import Finance from "./Invoice";
+import BedStatus from "./BedStat";
 
 const drawerWidth = 240;
 
@@ -73,6 +74,7 @@ export default function ClippedDrawer() {
               path="/CareTeam/Appointments"
               component={Appointments}
             ></Route>
+            <Route path="/CareTeam/BedStatus" component={BedStatus}></Route>
             <Route path="/CareTeam/Profile" component={CTProfile}></Route>
           </Switch>
         </main>

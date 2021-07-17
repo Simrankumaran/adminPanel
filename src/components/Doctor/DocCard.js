@@ -6,6 +6,7 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+// import axios from "axios";
 
 const useStyles = makeStyles({
   root: {
@@ -27,6 +28,21 @@ const useStyles = makeStyles({
 const DocCard = () => {
   const classes = useStyles();
   const bull = <span className={classes.bullet}>•</span>;
+  // const [details, setDetails] = useState([]);
+  // const headers = {
+  //   "Access-Control-Allow-Origin": "*",
+  //   "Content-Type": "application/json",
+  // };
+  // axios
+  //   .get("http://localhost:8000/user/all", headers)
+  //   .then((res) => {
+  //     if (res.status === 200) {
+  //       console.log(res);
+  //       // setDetails(res.data);
+  //       // console.log(details);
+  //     }
+  //   })
+  //   .catch((res) => console.log(res));
   return (
     <Card className={classes.root}>
       <CardContent>

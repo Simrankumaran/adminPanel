@@ -28,19 +28,19 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
   },
 }));
-const Invoice = () => {
+const BedStatus = () => {
   const classes = useStyles();
   const [details, setDetails] = useState({
-    org_id: "",
-    date: "",
-    amount: "",
+    alloted_to: 0,
+    org_ID: 1,
+    is_occupied: "True",
   });
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = {
-      org_id: details.org_id,
-      date: details.date,
-      amount: details.amount,
+      alloted_to: details.alloted_to,
+      org_ID: details.org_ID,
+      is_occupied: "True",
     };
     const headers = {
       "Access-Control-Allow-Origin": "*",
@@ -48,10 +48,11 @@ const Invoice = () => {
     };
     console.log(data);
     axios
-      .post("http://localhost:8000/earning/add", data, headers)
+      .post("http://localhost:8000/beds/add", data, headers)
       .then((res) => {
         if (res.code === 200) {
           console.log(res);
+          console.log("PUSHED");
         }
       })
       .catch((res) => console.log(res.response));
@@ -59,9 +60,8 @@ const Invoice = () => {
   const formReset = (e) => {
     e.preventDefault();
     setDetails({
-      org_id: "",
-      date: "",
-      amount: "",
+      alloted_to: 0,
+      org_ID: 1,
     });
   };
   const handleInputChange = (e) => {
@@ -72,30 +72,22 @@ const Invoice = () => {
   return (
     <div>
       <form className={classes.form} autoComplete="on" onSubmit={handleSubmit}>
-        <h1>Enter Earning Details</h1>
+        <h1>Enter Bed Details</h1>
         <br></br>
         <Grid container>
-          <Grid item xs={4}>
+          <Grid item xs={12}>
             <InputField
               name="org_id"
               label="Organisation ID"
-              value={details.org_id}
+              value={details.org_ID}
               onChange={handleInputChange}
             ></InputField>
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={12}>
             <InputField
-              name="date"
-              label="dd/mm/yyyy"
-              value={details.date}
-              onChange={handleInputChange}
-            ></InputField>
-          </Grid>
-          <Grid item xs={4}>
-            <InputField
-              name="amount"
-              label="Amount"
-              value={details.amount}
+              name="alloted_to"
+              label="PATIENT ID"
+              value={details.alloted_to}
               onChange={handleInputChange}
             ></InputField>
           </Grid>
@@ -127,4 +119,4 @@ const Invoice = () => {
     </div>
   );
 };
-export default Invoice;
+export default BedStatus;

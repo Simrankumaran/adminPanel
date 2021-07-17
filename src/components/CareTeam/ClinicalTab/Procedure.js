@@ -7,7 +7,6 @@ import InputField from "../../Controls/InputControl";
 import SelectControl from "../../Controls/CTSelectControl";
 import * as category from "../../../JSONFILES/Procedure/category";
 import * as follow_up from "../../../JSONFILES/Procedure/follow_up";
-import * as code from "../../../JSONFILES/Procedure/code";
 import * as complication from "../../../JSONFILES/Procedure/complication";
 import * as outcome from "../../../JSONFILES/Procedure/outcome";
 import * as reason_code from "../../../JSONFILES/Procedure/reason_code";
@@ -43,7 +42,6 @@ const Procedure = () => {
   const classes = useStyles();
   const [details, setDetails] = useState({
     category: "",
-    code: "",
     complication: "",
     follow_up: "",
     outcome: "",
@@ -60,7 +58,6 @@ const Procedure = () => {
       patient_id: details.patient_id,
       category: details.category,
       complication: details.complication,
-      code: details.code,
       follow_up: details.follow_up,
       outcome: details.outcome,
       reason_code: details.reason_code,
@@ -75,7 +72,7 @@ const Procedure = () => {
     };
     console.log(data);
     axios
-      .post("http://localhost:8000/procedure/add", data, headers)
+      .post("http://localhost:8000/allergy/add", data, headers)
       .then((res) => {
         if (res.code === 200) {
           console.log(res);
@@ -87,7 +84,6 @@ const Procedure = () => {
     e.preventDefault();
     setDetails({
       category: "",
-      code: "",
       complication: "",
       follow_up: "",
       outcome: "",
@@ -134,16 +130,7 @@ const Procedure = () => {
             options={category.Categories()}
           />
         </Grid>
-        <Grid item xs={6}>
-          <SelectControl
-            label="Code"
-            name="code"
-            value={details.code}
-            autocomplete
-            onChange={handleInputChange}
-            options={code.ProcedureCode()}
-          />
-        </Grid>
+
         <Grid item xs={6}>
           <SelectControl
             label="complication"
