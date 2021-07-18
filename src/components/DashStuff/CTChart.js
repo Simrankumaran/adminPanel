@@ -96,7 +96,7 @@ const CareteamPie = () => {
       )
       .then((res) => {
         if (res.status === 200) {
-          console.log(res.data);
+          // console.log(res.data);
           // setDocdata(res.data);
           setDocdata({ stats: res.data });
           // for (var i in res.data) {
@@ -112,7 +112,7 @@ const CareteamPie = () => {
 
   return (
     <div>
-      {console.log(docdata)}
+      {/* {console.log(docdata)} */}
       {/* {console.log(data01)} */}
       <PieChart width={400} height={400}>
         <Pie

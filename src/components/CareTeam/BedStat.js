@@ -33,7 +33,7 @@ const BedStatus = () => {
   const [details, setDetails] = useState({
     alloted_to: 0,
     org_ID: 1,
-    is_occupied: "True",
+    // is_occupied: "True",
   });
   const handleSubmit = (e) => {
     e.preventDefault();

@@ -18,8 +18,8 @@ const Chart1 = () => {
       )
       .then((res) => {
         if (res.status === 200) {
-          console.log("Earning chart data");
-          console.log(res.data);
+          // console.log("Earning chart data");
+          // console.log(res.data);
           // setDocdata(res.data);
           setMoney({ earnings: res.data });
           // for (var i in res.data) {

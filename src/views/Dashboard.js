@@ -5,17 +5,12 @@ import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import { Card, Typography, CardContent } from "@material-ui/core";
 
-import {
-  TotalPatients,
-  HospitalBeds,
-  Visits,
-  Earning,
-} from "../components/DashStuff/Num1";
+import { TotalPatients, Earning } from "../components/DashStuff/Num1";
 import { Chart1 } from "../components/DashStuff/Charts";
 import Chart2 from "../components/DashStuff/DocGraph";
 import Chart3 from "../components/DashStuff/CTChart";
 import Chart4 from "../components/DashStuff/PatGender";
-
+import HospitalBeds from "../components/DashStuff/AvaiableBeds";
 const useStyles = makeStyles({
   root: {
     minWidth: 100,
@@ -54,19 +49,17 @@ const Dashboard = () => {
         </Card>
       </div>
       <Grid container spacing={4} className={classes.charts}>
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid item xs={12} sm={6} md={4}>
           <HospitalBeds></HospitalBeds>
         </Grid>
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid item xs={12} sm={6} md={4}>
           <TotalPatients></TotalPatients>
         </Grid>
-        <Grid item xs={12} sm={6} md={3}>
-          <Visits></Visits>
-        </Grid>
-        <Grid item xs={12} sm={6} md={3}>
+
+        <Grid item xs={12} sm={6} md={4}>
           <Earning></Earning>
         </Grid>
-        <Grid className={classes.patlist} item xs={12} sm={6} md={3}>
+        <Grid className={classes.patlist} item xs={12} sm={6} md={4}>
           <Card className={classes.heading}>
             <CardContent>
               <Typography>HOSPITAL ANALYTICS</Typography>

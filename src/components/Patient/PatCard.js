@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const PatCard = () => {
+const PatCard = ({ fullname, email, phno, address, bloodgroup }) => {
   const classes = useStyles();
   const bull = <span className={classes.bullet}>•</span>;
   return (
@@ -34,23 +34,27 @@ const PatCard = () => {
           color="textSecondary"
           gutterBottom
         >
-          Cardio
+          Blood Group : {bloodgroup}
         </Typography>
         <Typography variant="h5" component="h2">
-          {bull}Mr Acharya Agarwal{bull}
+          {bull}
+          {fullname}
+          {bull}
         </Typography>
         <Typography className={classes.pos} color="textSecondary">
-          Male,English
+          <hr></hr>
+          Email : {email}
+          <br></br>
+          Contact Number : {phno}
         </Typography>
         <Typography variant="body2" component="p">
-          104, 4, Akshar Ind Estate, Ram Mandir Rd, Goregaon
-          (west),Mumbai-400104
+          ADDRESS : {address}
           <br />
         </Typography>
       </CardContent>
-      <CardActions>
+      {/* <CardActions>
         <Button size="small">View Profile</Button>
-      </CardActions>
+      </CardActions> */}
     </Card>
   );
 };

@@ -4,7 +4,7 @@ import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import EmailIcon from "@material-ui/icons/Email";
+// import EmailIcon from "@material-ui/icons/Email";
 import InfoIcon from "@material-ui/icons/Info";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import DashboardIcon from "@material-ui/icons/Dashboard";
@@ -62,14 +62,14 @@ const Nav = () => {
 
         <Divider />
         <List>
-          <Link to="/Admin/Profile" className={classes.linkto}>
+          {/* <Link to="/Admin/Profile" className={classes.linkto}>
             <ListItem button key="Profile">
               <ListItemIcon>
                 <EmailIcon></EmailIcon>
               </ListItemIcon>
               <ListItemText primary="Profile" />
             </ListItem>
-          </Link>
+          </Link> */}
           <Link to="/Report" className={classes.linkto}>
             <ListItem button key="Report">
               <ListItemIcon>
