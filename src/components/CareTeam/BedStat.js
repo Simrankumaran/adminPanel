@@ -48,7 +48,7 @@ const BedStatus = () => {
     };
     console.log(data);
     axios
-      .post("http://localhost:8000/beds/add", data, headers)
+      .post("https://cehr.herokuapp.com/beds/add", data, headers)
       .then((res) => {
         if (res.code === 200) {
           console.log(res);

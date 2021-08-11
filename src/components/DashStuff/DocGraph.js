@@ -62,18 +62,13 @@ const renderActiveShape = (props) => {
         y={ey}
         textAnchor={textAnchor}
         fill="#333"
-      >{`Number: ${value}`}</text>
+      >{`Count: ${value}`}</text>
     </g>
   );
 };
 
-const Chart2 = () => {
-  // const data01 = [
-  //   { name: "Cardiology", value: 10 },
-  //   { name: "Neurology", value: 5 },
-  //   { name: "Physiology", value: 8 },
-  //   { name: "ENT", value: 4 },
-  // ];
+const Chart2 = (props) => {
+  const org_id = props.org_id;
   const [activeIndex, setActiveIndex] = useState(0);
   const onPieEnter = useCallback(
     (_, index) => {
@@ -91,7 +86,8 @@ const Chart2 = () => {
     };
     axios
       .get(
-        "http://localhost:8000/analytics/stats/department/practitioner/" + 1,
+        "https://cehr.herokuapp.com/analytics/stats/department/practitioner/" +
+          org_id,
         headers
       )
       .then((res) => {

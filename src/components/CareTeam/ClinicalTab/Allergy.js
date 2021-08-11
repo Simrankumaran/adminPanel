@@ -66,7 +66,7 @@ const Allergy = () => {
     };
     console.log(data);
     axios
-      .post("http://localhost:8000/allergy/add", data, headers)
+      .post("https://cehr.herokuapp.com/allergy/add", data, headers)
       .then((res) => {
         if (res.code === 200) {
           console.log(res.data.allergy_id);

@@ -71,7 +71,7 @@ const FamHis = () => {
     };
     console.log(data);
     axios
-      .post("http://localhost:8000/familyhistory/add", data, headers)
+      .post("https://cehr.herokuapp.com/familyhistory/add", data, headers)
       .then((res) => {
         if (res.code === 200) {
           console.log(res.data);

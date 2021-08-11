@@ -62,12 +62,14 @@ const renderActiveShape = (props) => {
         y={ey}
         textAnchor={textAnchor}
         fill="#333"
-      >{`Number: ${value}`}</text>
+      >{`Count: ${value}`}</text>
     </g>
   );
 };
 
-const PatGen = () => {
+const PatGen = (props) => {
+  const org_id = props.org_id;
+
   //   const data01 = [
   //     { name: "Cardiology", value: 10 },
   //     { name: "Neurology", value: 5 },
@@ -90,7 +92,10 @@ const PatGen = () => {
       "Content-Type": "application/json",
     };
     axios
-      .get("http://localhost:8000/analytics/stats/gender/patient/" + 1, headers)
+      .get(
+        "https://cehr.herokuapp.com/analytics/stats/gender/patient/" + org_id,
+        headers
+      )
       .then((res) => {
         if (res.status === 200) {
           // console.log(res.data);

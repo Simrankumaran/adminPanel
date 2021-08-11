@@ -64,7 +64,7 @@ const Problems = () => {
     };
     console.log(data);
     axios
-      .post("http://localhost:8000/problem/add", data, headers)
+      .post("https://cehr.herokuapp.com/problem/add", data, headers)
       .then((res) => {
         if (res.code === 200) {
           console.log(res);

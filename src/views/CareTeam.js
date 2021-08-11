@@ -101,7 +101,7 @@ const CareTeam = (props) => {
     };
     console.log(userdata);
     axios
-      .post("http://localhost:8000/user/add", userdata, headers)
+      .post("https://cehr.herokuapp.com/user/add", userdata, headers)
       .then((res) => {
         if (res.status === 200) {
           // setDetails({ ...details, user_id: res.data.user_id });
@@ -116,7 +116,7 @@ const CareTeam = (props) => {
           console.log(docdata.user_id);
           console.log(res.data.user_id);
           axios
-            .post("http://localhost:8000/careteam/add", docdata, headers)
+            .post("https://cehr.herokuapp.com/careteam/add", docdata, headers)
             .then((res) => {
               console.log("before condition");
               if (res.status === 200) {

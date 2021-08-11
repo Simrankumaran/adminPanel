@@ -15,7 +15,7 @@ const TotalPatients = () => {
       "Content-Type": "application/json",
     };
     axios
-      .get("http://localhost:8000/patient/all/", headers)
+      .get("https://cehr.herokuapp.com/patient/all/", headers)
       .then((res) => {
         if (res.status === 200) {
           setDocdata({ totP: res.data });
@@ -39,7 +39,9 @@ const TotalPatients = () => {
   );
 };
 
-const Earning = () => {
+const Earning = (props) => {
+  const org_id = props.org_id;
+  // console.log("org id from earning comp  " + org_id);
   const [totalearning, setTotalearning] = useState({
     data: [],
   });
@@ -50,7 +52,7 @@ const Earning = () => {
     };
     axios
       .get(
-        "http://localhost:8000/analytics/stats/hospital/earning/" + 1,
+        "https://cehr.herokuapp.com/analytics/stats/hospital/earning/" + org_id,
         headers
       )
       .then((res) => {

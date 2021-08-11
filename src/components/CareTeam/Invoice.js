@@ -48,7 +48,7 @@ const Invoice = () => {
     };
     console.log(data);
     axios
-      .post("http://localhost:8000/earning/add", data, headers)
+      .post("https://cehr.herokuapp.com/earning/add", data, headers)
       .then((res) => {
         if (res.code === 200) {
           console.log(res);

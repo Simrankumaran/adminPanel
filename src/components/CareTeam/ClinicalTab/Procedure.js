@@ -72,7 +72,7 @@ const Procedure = () => {
     };
     console.log(data);
     axios
-      .post("http://localhost:8000/allergy/add", data, headers)
+      .post("https://cehr.herokuapp.com/procedure/add", data, headers)
       .then((res) => {
         if (res.code === 200) {
           console.log(res);

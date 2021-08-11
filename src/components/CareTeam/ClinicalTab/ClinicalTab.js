@@ -4,6 +4,8 @@ import React from "react";
 import Paper from "@material-ui/core/Paper";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
+import { useLocation } from "react-router-dom";
+
 import Allergy from "./Allergy";
 import FamilyHistory from "./FamHis";
 import Problems from "./Problems";
@@ -15,7 +17,10 @@ const useStyles = makeStyles({
 });
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
-
+  const location = useLocation();
+  const { entity_id, entity_type, org_id, user_id } =
+    (location && location.state) || {};
+  console.log(entity_id, entity_type, org_id, user_id);
   return (
     <div
       role="tabpanel"

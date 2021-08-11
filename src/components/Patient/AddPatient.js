@@ -119,7 +119,7 @@ const AddPatient = (props) => {
     };
     console.log(userdata);
     axios
-      .post("http://localhost:8000/user/add", userdata, headers)
+      .post("https://cehr.herokuapp.com/user/add", userdata, headers)
       .then((res) => {
         if (res.status === 200) {
           const patdata = {
@@ -136,7 +136,7 @@ const AddPatient = (props) => {
           console.log("THIS IS patient USER ID");
           console.log(details.user_id);
           axios
-            .post("http://localhost:8000/patient/add", patdata, headers)
+            .post("https://cehr.herokuapp.com/patient/add", patdata, headers)
             .then((res) => {
               console.log("before condition");
               if (res.status === 200) {

@@ -55,7 +55,7 @@ const AllDoctors = () => {
       "Content-Type": "application/json",
     };
     axios
-      .get("http://localhost:8000/orgs/practitioners/" + 1, headers)
+      .get("https://cehr.herokuapp.com/orgs/practitioners/" + 1, headers)
       .then((res) => {
         if (res.status === 200) {
           setAlldoctors({ alldetails: res.data });
@@ -82,13 +82,13 @@ const AllDoctors = () => {
         {alldoctors.alldetails.map((item) => (
           <Grid item xs={12} sm={6} md={4}>
             <DocCard
-              key={item[0].user_id}
-              docID={item[0].user_id}
-              dept={item[1].department}
-              fullname={item[0].username}
-              email={item[0].email}
-              phno={item[0].phone}
-              address={item[0].address}
+              key={item.user_details.user_id}
+              docID={item.user_details.user_id}
+              dept={item.Practitioner.department}
+              fullname={item.user_details.username}
+              email={item.user_details.email}
+              phno={item.user_details.phone}
+              address={item.user_details.address}
             ></DocCard>
           </Grid>
         ))}

@@ -65,7 +65,7 @@ const Appointments = () => {
     };
     console.log(data);
     axios
-      .post("http://localhost:8000/appointment/add", data, headers)
+      .post("https://cehr.herokuapp.com/appointment/add", data, headers)
       .then((res) => {
         if (res.code === 200) {
           console.log(res);

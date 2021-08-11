@@ -49,7 +49,7 @@ export default function ClippedDrawer() {
         <AppBar position="fixed" className={classes.appBar}>
           <Toolbar>
             <Typography variant="h6" noWrap>
-              HOSPITAL NAME
+              Care Team
             </Typography>
           </Toolbar>
         </AppBar>

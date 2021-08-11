@@ -111,7 +111,7 @@ const AddDoctor = (props) => {
 
     console.log(userdata);
     axios
-      .post("http://localhost:8000/user/add", userdata, headers)
+      .post("https://cehr.herokuapp.com/user/add", userdata, headers)
       .then((res) => {
         if (res.status === 200) {
           // updateUserId(res.data.user_id);
@@ -131,7 +131,11 @@ const AddDoctor = (props) => {
           // console.log(docdata.user_id);
           // console.log(res.data.user_id);
           axios
-            .post("http://localhost:8000/practitioner/add", docdata, headers)
+            .post(
+              "https://cehr.herokuapp.com/practitioner/add",
+              docdata,
+              headers
+            )
             .then((res) => {
               console.log("before condition");
               if (res.status === 200) {

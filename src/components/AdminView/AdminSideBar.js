@@ -5,7 +5,12 @@ import Typography from "@material-ui/core/Typography";
 import Drawer from "@material-ui/core/Drawer";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Toolbar from "@material-ui/core/Toolbar";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  useLocation,
+} from "react-router-dom";
 
 import Nav from "./AdminNav";
 import Dashboard from "../../views/Dashboard";
@@ -41,7 +46,10 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ClippedDrawer() {
   const classes = useStyles();
-
+  const location = useLocation();
+  const { entity_id, entity_type, org_id, user_id } =
+    (location && location.state) || {};
+  console.log(entity_id, entity_type, org_id, user_id);
   return (
     <Router>
       <div className={classes.root}>
@@ -49,7 +57,7 @@ export default function ClippedDrawer() {
         <AppBar position="fixed" className={classes.appBar}>
           <Toolbar>
             <Typography variant="h6" noWrap>
-              HOSPITAL NAME
+              ADMIN
             </Typography>
           </Toolbar>
         </AppBar>

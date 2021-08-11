@@ -62,12 +62,13 @@ const renderActiveShape = (props) => {
         y={ey}
         textAnchor={textAnchor}
         fill="#333"
-      >{`Number: ${value}`}</text>
+      >{`Count: ${value}`}</text>
     </g>
   );
 };
 
-const CareteamPie = () => {
+const CareteamPie = (props) => {
+  const org_id = props.org_id;
   //   const data01 = [
   //     { name: "Cardiology", value: 10 },
   //     { name: "Neurology", value: 5 },
@@ -91,7 +92,8 @@ const CareteamPie = () => {
     };
     axios
       .get(
-        "http://localhost:8000/analytics/stats/department/careteam/" + 1,
+        "https://cehr.herokuapp.com/analytics/stats/department/careteam/" +
+          org_id,
         headers
       )
       .then((res) => {

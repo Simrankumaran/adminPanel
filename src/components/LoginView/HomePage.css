@@ -1,0 +1,47 @@
+body {
+  background-color: #acadad;
+}
+
+h1,
+Bounce {
+  top: 40%;
+  margin-top: 5%;
+  display: block;
+  position: relative;
+  color: #5cfafa;
+}
+
+.btn {
+  border-color: #5cfafa;
+  border-radius: 4px;
+  color: #5cfafa;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  overflow: hidden;
+  z-index: 1;
+  -webkit-transition: color 150ms ease-in-out;
+  transition: color 150ms ease-in-out;
+  font-size: 25px;
+}
+.btn:after {
+  content: "";
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  width: 0;
+  height: 100%;
+  background: #5cfafa;
+  z-index: -1;
+  -webkit-transition: width 150ms ease-in-out;
+  transition: width 150ms ease-in-out;
+}
+.btn:hover {
+  color: #ffff;
+}
+.btn:hover:after {
+  width: 110%;
+}
